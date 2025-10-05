@@ -45,27 +45,34 @@ header.hero {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  color: #f0f0f0;
-  background-color: #121212; /* fallback si l'image ne charge pas */
-  background-image: url('images/portrait.jpg'); /* chemin correct vers ton image */
-  background-repeat: no-repeat;
-  background-position: 80% center; /* décale l'image vers la droite */
-  background-size: cover; /* couvre toute la section */
+  overflow: hidden;
 }
 
-header.hero .overlay {
+/* Image en arrière-plan */
+header.hero .hero-img {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
+  height: 100%; /* hauteur fixe égale à la section */
+  width: auto;   /* largeur auto pour garder le ratio */
+  object-fit: contain; /* toute l'image visible */
+  z-index: 1;
+}
+
+/* Overlay pour lisibilité du texte */
+header.hero .overlay {
+  position: relative; /* overlay au-dessus de l'image */
+  z-index: 2;
   width: 100%;
   height: 100%;
-  background: rgba(18,18,18,0.6); /* overlay sombre pour lisibilité */
+  background: rgba(18,18,18,0.6);
   display: flex;
   align-items: center;
   padding-left: 50px;
   box-sizing: border-box;
 }
 
+/* Texte d’introduction */
 header.hero .intro-text {
   max-width: 600px;
 }
@@ -150,10 +157,6 @@ footer {
     font-size: 0.9rem;
   }
 
-  header.hero {
-    background-position: center; /* recentre l’image sur petits écrans */
-  }
-
   header.hero .overlay {
     padding-left: 20px;
     text-align: center;
@@ -165,5 +168,12 @@ footer {
 
   header.hero .intro-text p {
     font-size: 1rem;
+  }
+
+  header.hero .hero-img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 }
