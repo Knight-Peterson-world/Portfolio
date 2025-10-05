@@ -1,47 +1,10 @@
-/* ======== HERO AVEC IMAGE DE FOND À DROITE ======== */
-.hero {
-  position: relative;
-  height: 100vh;
-  background-image: url('images/portrait.jpg'); /* Ton image */
-  background-size: cover;
-  background-position: right center; /* Positionne l’image vers la droite */
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* ======== OVERLAY SOMBRE POUR CONTRASTE TEXTE ======== */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(18, 18, 18, 0.7); /* Fond sombre semi-transparent */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  text-align: center;
-  z-index: 1;
-}
-
-.intro-text {
-  max-width: 700px;
-  z-index: 2;
-}
-
-.intro-text h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #ff9800;
-}
-
-.intro-text p {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+/* ======== BASE ======== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
 }
 
 /* ======== NAVIGATION FIXE EN HAUT ======== */
@@ -68,7 +31,52 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* ======== BOUTON ORANGE ======== */
+/* ======== IMAGE DE FOND EN PLEIN ÉCRAN ======== */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('images/portrait.jpg'); /* Ton image en fond */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ======== OVERLAY SOMBRE POUR LE TEXTE ======== */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18, 18, 18, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  z-index: 1;
+}
+
+.intro-text {
+  max-width: 700px;
+  z-index: 2;
+}
+
+.intro-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ff9800;
+}
+
+.intro-text p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* ======== BOUTON ======== */
 .btn-orange {
   background-color: #ff9800;
   color: white;
@@ -104,9 +112,5 @@ footer {
 
   nav {
     font-size: 0.9rem;
-  }
-
-  .hero {
-    background-position: center center; /* Centré sur mobile */
   }
 }
