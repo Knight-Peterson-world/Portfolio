@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Knight Peterson Jean-Baptiste</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Knight Peterson Jean-Baptiste</h1>
+    <p>Étudiant en Master 2 Mathématiques Appliquées et Statistiques</p>
+    <nav>
+      <a href="#about">À propos</a>
+      <a href="#projects">Projets</a>
+      <a href="#contact">Contact</a>
+      <a href="cv.pdf" target="_blank">Mon CV</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>À propos de moi</h2>
+    <p>Je suis passionné par la data science et les statistiques appliquées. J’ai effectué un stage chez Michelin et je poursuis un master 2 en Mathématiques Appliquées et Statistiques à Clermont-Ferrand.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Mes projets</h2>
+    <div class="project">
+      <h3>Analyse des ventes Michelin</h3>
+      <p>Projet de stage : traitement et visualisation de données de production.</p>
+      <a href="https://github.com/ton-profil/projet1" target="_blank">Voir sur GitHub</a>
+    </div>
+    <div class="project">
+      <h3>Modélisation statistique</h3>
+      <p>Projet universitaire utilisant R et Python pour l’analyse de données.</p>
+      <a href="https://github.com/ton-profil/projet2" target="_blank">Voir sur GitHub</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>📧 knightpetersonjeanbaptiste682@gmail.com</p>
+    <p>💼 <a href="https://www.linkedin.com/in/ton-profil" target="_blank">LinkedIn</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Knight Peterson Jean-Baptiste</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
