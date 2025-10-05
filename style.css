@@ -46,9 +46,11 @@ header.hero {
   align-items: center;
   justify-content: flex-start;
   color: #f0f0f0;
-  background: url('images/portrait.jpg') no-repeat right center; /* image à droite */
-  background-size: cover; /* adapte à l’écran */
-  background-position: right center;
+  background-color: #121212; /* fallback si l'image ne charge pas */
+  background-image: url('images/portrait.jpg'); /* chemin correct vers ton image */
+  background-repeat: no-repeat;
+  background-position: 80% center; /* décale l'image vers la droite */
+  background-size: cover; /* couvre toute la section */
 }
 
 header.hero .overlay {
@@ -61,6 +63,7 @@ header.hero .overlay {
   display: flex;
   align-items: center;
   padding-left: 50px;
+  box-sizing: border-box;
 }
 
 header.hero .intro-text {
