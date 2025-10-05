@@ -1,9 +1,9 @@
 /* ======== BASE ======== */
 body {
-  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #121212; /* fond noir */
+  font-family: 'Poppins', sans-serif;
+  background-color: #121212;
   color: #f0f0f0;
 }
 
@@ -13,7 +13,7 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #1e1e1e;
+  background-color: rgba(18, 18, 18, 0.95);
   padding: 1rem;
   text-align: center;
   z-index: 1000;
@@ -31,48 +31,65 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* ======== ESPACE SOUS NAVIGATION FIXE ======== */
-main {
-  padding: 6rem 2rem 2rem;
-  max-width: 1000px;
-  margin: auto;
-}
-
-/* ======== BLOCS DE TEXTE SÉPARÉS ======== */
-section {
-  background-color: #1e1e1e;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-/* ======== À PROPOS AVEC PHOTO CÔTÉ TEXTE ======== */
-.about-container {
+/* ======== IMAGE DE FOND EN PLEIN ÉCRAN ======== */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('images/portrait.jpg'); /* Ton image en fond */
+  background-size: cover;
+  background-position: center;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 2rem;
 }
 
-.about-photo {
-  width: 200px;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+/* ======== OVERLAY SOMBRE POUR LE TEXTE ======== */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18, 18, 18, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  z-index: 1;
 }
 
-.about-text {
-  flex: 1;
+.intro-text {
+  max-width: 700px;
+  z-index: 2;
 }
 
-.about-text h2 {
+.intro-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
   color: #ff9800;
+}
+
+.intro-text p {
+  font-size: 1.2rem;
   margin-bottom: 1rem;
 }
 
-.about-text p {
-  line-height: 1.6;
+/* ======== BOUTON ======== */
+.btn-orange {
+  background-color: #ff9800;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.btn-orange:hover {
+  background-color: #e68900;
 }
 
 /* ======== FOOTER ======== */
@@ -85,13 +102,12 @@ footer {
 
 /* ======== RESPONSIVE ======== */
 @media (max-width: 768px) {
-  .about-container {
-    flex-direction: column;
-    text-align: center;
+  .intro-text h1 {
+    font-size: 2rem;
   }
 
-  .about-photo {
-    width: 150px;
+  .intro-text p {
+    font-size: 1rem;
   }
 
   nav {
