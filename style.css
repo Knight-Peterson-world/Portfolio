@@ -48,14 +48,14 @@ header.hero {
   overflow: hidden;
 }
 
-/* Image en arrière-plan */
+/* Image centrée en arrière-plan */
 header.hero .hero-img {
   position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%; /* hauteur fixe égale à la section */
-  width: auto;   /* largeur auto pour garder le ratio */
-  object-fit: contain; /* toute l'image visible */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%; /* fixe la taille pour voir la tête entière */
+  width: auto; /* garde le ratio de l'image */
   z-index: 1;
 }
 
@@ -68,6 +68,7 @@ header.hero .overlay {
   background: rgba(18,18,18,0.6);
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   padding-left: 50px;
   box-sizing: border-box;
 }
@@ -160,6 +161,7 @@ footer {
   header.hero .overlay {
     padding-left: 20px;
     text-align: center;
+    justify-content: center;
   }
 
   header.hero .intro-text h1 {
@@ -173,7 +175,9 @@ footer {
   header.hero .hero-img {
     position: relative;
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: auto; /* réduit la taille sur mobile */
+    transform: none;
+    margin: 0 auto;
+    display: block;
   }
 }
