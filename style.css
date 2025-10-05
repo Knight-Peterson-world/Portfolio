@@ -46,7 +46,7 @@ header.hero {
   align-items: center;
   justify-content: flex-start;
   color: #f0f0f0;
-  background: url('images/moi.jpg') no-repeat right center; /* image à droite */
+  background: url('images/portrait.jpg') no-repeat right center; /* image à droite */
   background-size: cover; /* adapte à l’écran */
   background-position: right center;
 }
