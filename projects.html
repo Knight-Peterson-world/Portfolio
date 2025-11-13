@@ -1,48 +1,91 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Mes Projets - Knight</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Portfolio - Démo Menu Fixe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1e1e1e;
+      padding: 1rem;
+      text-align: center;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    nav a,
+    nav a:visited,
+    nav a:focus,
+    nav a:active,
+    nav a.active {
+      margin: 0 1rem;
+      color: #ff9800;
+      text-decoration: none;
+      font-weight: bold;
+      position: static;
+      outline: none;
+      border: none;
+      box-shadow: none;
+      background: none;
+      transition: color 0.2s;
+    }
+    nav a:hover,
+    nav a:active,
+    nav a:focus,
+    nav a.active {
+      text-decoration: underline;
+      color: #ff9800;
+      font-weight: bold;
+      background: none;
+      outline: none;
+      border: none;
+      position: static;
+      box-shadow: none;
+    }
+    main {
+      padding: 6rem 2rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section {
+      background-color: #1e1e1e;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      scroll-margin-top: 100px;
+    }
+    @media (max-width: 768px) {
+      nav { font-size: 0.9rem; }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="about.html">À propos</a>
-      <a href="projects.html">Projets</a>
-      <a href="contact.html">Contact</a>
-      <a href="cv.html">CV</a>
-    </nav>
-  </header>
-
+  <nav>
+    <a href="#home" class="active">Accueil</a>
+    <a href="#about">À propos</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+  </nav>
   <main>
-    <section>
-      <h2>Mes Projets</h2>
-
-      <div class="project-card">
-        <h3>Projet Site E-commerce | Angular</h3>
-        <p>Application e-commerce développée en Angular permettant de naviguer dans un catalogue d’instruments de musique, d’ajouter des articles au panier, de les modifier ou les retirer. L’interface fluide et réactive offre une expérience utilisateur intuitive.</p>
-        <a href="https://github.com/ton-profil/ecommerce-angular" target="_blank" class="btn">Voir le projet</a>
-      </div>
-
-      <div class="project-card">
-        <h3>Analyse des ventes Michelin</h3>
-        <p>Projet de stage : traitement et visualisation de données de production avec Python et Power BI. Nettoyage de données, création de dashboards interactifs et recommandations stratégiques.</p>
-        <a href="https://github.com/ton-profil/projet-michelin" target="_blank" class="btn">Voir le projet</a>
-      </div>
-
-      <div class="project-card">
-        <h3>Modélisation statistique | R & Python</h3>
-        <p>Projet universitaire utilisant des modèles de régression, arbres de décision et analyse de survie sur des données biomédicales. Comparaison de performances et interprétation des résultats.</p>
-        <a href="https://github.com/ton-profil/stat-models" target="_blank" class="btn">Voir le projet</a>
-      </div>
-
-    </section>
+    <section id="home"><h1>Accueil</h1><p>Bienvenue sur ma page portfolio.</p></section>
+    <section id="about"><h1>À propos</h1><p>Quelques infos sur moi.</p></section>
+    <section id="cv"><h1>CV</h1><p>Mon parcours.</p></section>
+    <section id="contact"><h1>Contact</h1><p>Pour me joindre...</p></section>
   </main>
-
   <footer>
-    <p>© 2025 Knight Peterson Jean-Baptiste</p>
+    © 2025 - Mon Portfolio
   </footer>
 </body>
 </html>
