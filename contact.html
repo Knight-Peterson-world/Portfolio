@@ -23,9 +23,9 @@
     // Vérifier si EmailJS est chargé et initialiser
     window.addEventListener('load', function() {
       if (typeof emailjs !== 'undefined') {
-        // Ne pas initialiser si la clé n'est pas configurée
+        // Initialiser EmailJS avec votre clé publique
         const publicKey = 'dig2dWiw7JRIL4YlA';
-        if (publicKey && publicKey !== 'dig2dWiw7JRIL4YlA') {
+        if (publicKey && publicKey !== 'YOUR_PUBLIC_KEY') {
           emailjs.init(publicKey);
         }
       }
@@ -425,7 +425,8 @@
           const templateId = 'template_fqmultq';
           const publicKey = 'dig2dWiw7JRIL4YlA';
           
-          if (!emailjs || serviceId === 'service_n7s8sy8' || templateId === 'template_fqmultq' || publicKey === 'dig2dWiw7JRIL4YlA') {
+          // Vérifier si EmailJS n'est pas chargé ou si les valeurs sont encore les valeurs par défaut
+          if (!emailjs || serviceId === 'YOUR_SERVICE_ID' || templateId === 'YOUR_TEMPLATE_ID' || publicKey === 'YOUR_PUBLIC_KEY') {
             // EmailJS n'est pas configuré - utiliser mailto: comme solution de secours
             submitButton.disabled = false;
             submitButton.innerHTML = originalText;
