@@ -20,10 +20,16 @@
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
-    // Initialiser EmailJS au chargement de la page
-    (function(){
-      emailjs.init('YOUR_PUBLIC_KEY'); // À remplacer par votre clé publique EmailJS
-    })();
+    // Vérifier si EmailJS est chargé et initialiser
+    window.addEventListener('load', function() {
+      if (typeof emailjs !== 'undefined') {
+        // Ne pas initialiser si la clé n'est pas configurée
+        const publicKey = 'dig2dWiw7JRIL4YlA';
+        if (publicKey && publicKey !== 'dig2dWiw7JRIL4YlA') {
+          emailjs.init(publicKey);
+        }
+      }
+    });
   </script>
 </head>
 <body>
@@ -414,18 +420,60 @@
           // Récupérer les données du formulaire
           const formDataObj = new FormData(contactForm);
           
+          // Vérifier si EmailJS est configuré
+          const serviceId = 'service_n7s8sy8';
+          const templateId = 'template_fqmultq';
+          const publicKey = 'dig2dWiw7JRIL4YlA';
+          
+          if (!emailjs || serviceId === 'service_n7s8sy8' || templateId === 'template_fqmultq' || publicKey === 'dig2dWiw7JRIL4YlA') {
+            // EmailJS n'est pas configuré - utiliser mailto: comme solution de secours
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+            
+            const name = formDataObj.get('name');
+            const email = formDataObj.get('email');
+            const subject = encodeURIComponent(formDataObj.get('subject'));
+            const message = encodeURIComponent(formDataObj.get('message'));
+            
+            const mailtoLink = `mailto:knightpetersonjeanbaptiste682@gmail.com?subject=${subject}&body=Nom: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0A%0AMessage:%0A${message}`;
+            
+            // Afficher un message informatif
+            const infoMessage = document.createElement('div');
+            infoMessage.className = 'form-info';
+            infoMessage.innerHTML = `
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              <div>
+                <strong>EmailJS n'est pas encore configuré.</strong>
+                <p>Cliquez sur le bouton ci-dessous pour ouvrir votre client email avec le message pré-rempli.</p>
+                <a href="${mailtoLink}" class="btn btn-primary" style="margin-top: 10px; display: inline-block;">
+                  Ouvrir mon client email
+                </a>
+              </div>
+            `;
+            contactForm.appendChild(infoMessage);
+            
+            setTimeout(() => {
+              infoMessage.remove();
+            }, 10000);
+            
+            return;
+          }
+          
           // Préparer les paramètres du message
           const templateParams = {
             from_name: formDataObj.get('name'),
             from_email: formDataObj.get('email'),
             subject: formDataObj.get('subject'),
             message: formDataObj.get('message'),
-            to_email: 'knightpetersonjeanbaptiste682@gmail.com' // Votre adresse email de réception
+            to_email: 'knightpetersonjeanbaptiste682@gmail.com'
           };
 
           // Envoyer l'email via EmailJS
-          // Remplacez 'YOUR_SERVICE_ID' et 'YOUR_TEMPLATE_ID' par vos identifiants EmailJS
-          emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+          emailjs.send(serviceId, templateId, templateParams)
             .then(function(response) {
               // Succès
               formSuccess.classList.add('show');
@@ -447,7 +495,14 @@
               submitButton.disabled = false;
               submitButton.innerHTML = originalText;
               
-              // Afficher un message d'erreur
+              // Afficher un message d'erreur détaillé
+              let errorText = 'Erreur lors de l\'envoi. ';
+              if (error.text) {
+                errorText += error.text;
+              } else {
+                errorText += 'Veuillez réessayer ou me contacter directement par email.';
+              }
+              
               const errorMessage = document.createElement('div');
               errorMessage.className = 'form-error';
               errorMessage.innerHTML = `
@@ -456,13 +511,13 @@
                   <line x1="12" y1="8" x2="12" y2="12"/>
                   <line x1="12" y1="16" x2="12.01" y2="16"/>
                 </svg>
-                <span>Erreur lors de l'envoi. Veuillez réessayer ou me contacter directement par email.</span>
+                <span>${errorText}</span>
               `;
               contactForm.appendChild(errorMessage);
               
               setTimeout(() => {
                 errorMessage.remove();
-              }, 5000);
+              }, 8000);
             });
         } else {
           // Focus sur le premier champ en erreur
