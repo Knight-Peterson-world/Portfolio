@@ -1076,10 +1076,147 @@ ul {
   font-weight: bold;
 }
 
+/* Version simplifiée des compétences */
+.skills-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skill-overview-item {
+  background: white;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.skill-overview-item.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skill-overview-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.skill-overview-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+  display: block;
+}
+
+.skill-overview-title {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.skill-overview-text {
+  color: var(--color-text-light);
+  line-height: 1.7;
+  font-size: var(--font-size-base);
+}
+
+.skills-cta {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.skills-cta-text {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-base);
+}
+
 /* Section Parcours / Timeline */
 .journey-section {
   padding: var(--spacing-xl) var(--spacing-md);
   background: var(--color-bg);
+}
+
+/* Version simplifiée du parcours */
+.journey-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.journey-summary-card {
+  background: white;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.journey-summary-card.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.journey-summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.journey-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+  display: block;
+}
+
+.journey-summary-title {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.journey-summary-text {
+  color: var(--color-text-light);
+  line-height: 1.7;
+  font-size: var(--font-size-base);
+}
+
+.journey-summary-text strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.journey-cta {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.journey-cta-text {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-base);
 }
 
 .timeline {
@@ -1271,6 +1408,14 @@ ul {
 
   .interests-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .journey-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-overview {
+    grid-template-columns: 1fr;
   }
 
   .cta-buttons {
@@ -1502,7 +1647,8 @@ ul {
 }
 
 .form-input,
-.form-textarea {
+.form-textarea,
+select.form-input {
   width: 100%;
   padding: 14px 16px;
   font-size: var(--font-size-base);
@@ -1513,6 +1659,16 @@ ul {
   border-radius: var(--border-radius-md);
   transition: all var(--transition-base);
   outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23636e72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
+select.form-input {
+  cursor: pointer;
 }
 
 .form-input:focus,
