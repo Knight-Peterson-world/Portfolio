@@ -2259,3 +2259,331 @@ ul {
   }
 }
 
+/* ============================================
+   Version Alternative - Styles simplifiés
+   ============================================ */
+
+/* Hero Alternative */
+.hero-alt {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  margin-top: 70px;
+}
+
+.hero-img-alt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: auto;
+  max-width: 90%;
+  object-fit: contain;
+  z-index: 1;
+  filter: brightness(0.7);
+  animation: scaleIn 20s ease-in-out infinite alternate;
+}
+
+.overlay-alt {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 78, 137, 0.85) 0%,
+    rgba(26, 101, 158, 0.75) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-xl);
+  box-sizing: border-box;
+}
+
+.intro-text-alt {
+  max-width: 600px;
+  color: white;
+  animation: fadeInUp 1s ease-out;
+}
+
+.intro-text-alt h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
+}
+
+.intro-text-alt p {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--spacing-sm);
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.hero-buttons-alt {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+/* Sections Alternatives */
+.section-alt {
+  background: var(--color-bg-light);
+  padding: var(--spacing-xl) var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  scroll-margin-top: 100px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-alt.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-alt h2 {
+  color: var(--color-primary);
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  position: relative;
+  padding-bottom: var(--spacing-sm);
+}
+
+.section-alt h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: 2px;
+}
+
+.section-alt p {
+  line-height: 1.8;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+}
+
+.section-alt strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* About Container Alternative */
+.about-container-alt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.about-photo-alt {
+  width: 250px;
+  height: 250px;
+  border-radius: var(--border-radius-lg);
+  object-fit: cover;
+  box-shadow: var(--shadow-xl);
+  transition: transform var(--transition-slow);
+  flex-shrink: 0;
+}
+
+.about-photo-alt:hover {
+  transform: scale(1.05);
+}
+
+.about-text-alt {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-text-alt h2 {
+  color: var(--color-primary);
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+}
+
+.about-text-alt p {
+  line-height: 1.8;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Contact Info Alternative */
+.contact-info-alt {
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-md);
+  background: white;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-item-alt {
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-bg-light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.contact-item-alt:last-child {
+  border-bottom: none;
+}
+
+.contact-item-alt strong {
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+}
+
+.contact-item-alt a {
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: color var(--transition-base);
+}
+
+.contact-item-alt a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.contact-item-alt span {
+  color: var(--color-text-light);
+}
+
+.contact-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+/* Responsive pour Version Alternative */
+@media (max-width: 968px) {
+  .overlay-alt {
+    padding: var(--spacing-md);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .intro-text-alt {
+    max-width: 100%;
+  }
+
+  .hero-buttons-alt {
+    justify-content: center;
+  }
+
+  .about-container-alt {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-photo-alt {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-alt {
+    min-height: 90vh;
+  }
+
+  .hero-img-alt {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    transform: none;
+    margin: 0 auto;
+    display: block;
+    filter: brightness(0.6);
+  }
+
+  .overlay-alt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--spacing-md);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .intro-text-alt h1 {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  .intro-text-alt p {
+    font-size: var(--font-size-base);
+  }
+
+  .hero-buttons-alt {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons-alt .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section-alt {
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .about-photo-alt {
+    width: 150px;
+    height: 150px;
+  }
+
+  .contact-actions {
+    flex-direction: column;
+  }
+
+  .contact-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-alt {
+    min-height: 80vh;
+  }
+
+  .intro-text-alt p {
+    font-size: var(--font-size-small);
+  }
+
+  .section-alt {
+    padding: var(--spacing-sm);
+    margin: var(--spacing-sm);
+  }
+
+  .about-photo-alt {
+    width: 120px;
+    height: 120px;
+  }
+}
+
