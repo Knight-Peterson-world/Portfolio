@@ -38,77 +38,72 @@
   </nav>
 
   <!-- Section Hero / Accueil -->
-  <header class="hero-alt" id="accueil" role="banner">
-    <img 
-      src="images/portrait.jpg" 
-      alt="Portrait de Knight Peterson Jean-Baptiste" 
-      class="hero-img-alt"
-      loading="eager"
-      fetchpriority="high"
-    />
-
-    <div class="overlay-alt">
-      <div class="intro-text-alt">
-        <h1>Bienvenue sur mon portfolio</h1>
-        <p>Je suis Knight Peterson Jean-Baptiste, étudiant en Master 2 Mathématiques Appliquées et Statistiques à Clermont-Ferrand.</p>
-        <p>Passionné par la data science, le développement web et les statistiques appliquées.</p>
-        <div class="hero-buttons-alt">
-          <a href="contact.html" class="btn btn-primary">Me contacter</a>
-          <a href="projects.html" class="btn btn-secondary">Voir mes projets</a>
+  <header class="hero hero-simple" role="banner">
+    <div class="hero-content">
+      <div class="intro-text">
+        <h1 class="hero-title">
+          <span class="greeting">Bonjour, je suis</span>
+          <span class="name">Knight</span>
+          <span class="emoji" aria-hidden="true">👋</span>
+        </h1>
+        <p class="hero-subtitle">Étudiant en Master 2 Mathématiques Appliquées et Statistiques</p>
+        <p class="hero-description">Bienvenue sur mon portfolio. Explorez mes projets, mon parcours, et contactez-moi !</p>
+        <div class="hero-buttons">
+          <a href="projects.html" class="btn btn-primary">
+            <span>Voir mes projets</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="contact.html" class="btn btn-secondary">Me contacter</a>
         </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div class="arrow">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
   </header>
 
+  <!-- Contenu principal -->
   <main>
     <!-- Section À propos -->
-    <section class="section-alt" id="apropos">
-      <div class="about-container-alt">
-        <img 
-          src="images/portrait.jpg" 
-          alt="Photo de Knight Peterson Jean-Baptiste" 
-          class="about-photo-alt"
-          loading="lazy"
-        />
-        <div class="about-text-alt">
-          <h2>À propos de moi</h2>
-          <p>
-            Je m'appelle <strong>Knight Peterson Jean-Baptiste</strong>, étudiant en <strong>Master 2 Mathématiques Appliquées et Statistiques</strong> à Clermont-Ferrand.
-          </p>
-          <p>
-            Passionné par la <strong>data science</strong>, le <strong>développement web</strong> et les <strong>statistiques appliquées</strong>, 
-            je suis constamment à la recherche d'opportunités pour mettre mes compétences en pratique dans des projets innovants et impactants.
-          </p>
-          <p>
-            Mon objectif est de combiner rigueur mathématique et créativité technique pour résoudre des problèmes complexes 
-            et créer des solutions qui font la différence.
-          </p>
-          <a href="about.html" class="btn btn-outline">En savoir plus</a>
+    <section class="about-container" id="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-image-wrapper">
+            <img 
+              src="images/portrait.jpg" 
+              alt="Photo de Knight Peterson Jean-Baptiste" 
+              class="about-photo"
+              loading="lazy"
+              width="400"
+              height="400"
+            />
+            <div class="about-image-overlay"></div>
+          </div>
+          <div class="about-text">
+            <h2 class="section-title">À propos de moi</h2>
+            <p class="about-description">
+              Je suis étudiant en Master 2, passionné par les mathématiques appliquées et la data science. 
+              Mon parcours académique m'a permis de développer une expertise solide en analyse statistique, 
+              modélisation prédictive et machine learning.
+            </p>
+            <p class="about-description">
+              J'aime relever des défis complexes et transformer les données en insights actionnables. 
+              Explorez mes projets pour découvrir mon travail !
+            </p>
+            <a href="about.html" class="btn btn-outline">En savoir plus</a>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Section Contact -->
-    <section class="section-alt" id="contact">
-      <h2>Contact</h2>
-      <p>N'hésitez pas à me contacter pour discuter de projets, collaborations ou opportunités.</p>
-      <div class="contact-info-alt">
-        <div class="contact-item-alt">
-          <strong>Email :</strong>
-          <a href="mailto:knight.peterson@example.com">knight.peterson@example.com</a>
-        </div>
-        <div class="contact-item-alt">
-          <strong>Téléphone :</strong>
-          <a href="tel:+33612345678">+33 6 12 34 56 78</a>
-        </div>
-        <div class="contact-item-alt">
-          <strong>Localisation :</strong>
-          <span>Clermont-Ferrand, France</span>
-        </div>
-      </div>
-      <div class="contact-actions">
-        <a href="contact.html" class="btn btn-primary">Formulaire de contact</a>
-        <a href="cv.html" class="btn btn-outline">Voir mon CV</a>
       </div>
     </section>
   </main>
@@ -128,7 +123,7 @@
     </div>
   </footer>
 
-  <!-- Script pour la navigation mobile et smooth scroll -->
+  <!-- Script pour la navigation mobile -->
   <script>
     // Navigation mobile toggle
     const navToggle = document.querySelector('.nav-toggle');
@@ -152,16 +147,15 @@
       });
     });
 
-    // Smooth scroll pour les ancres
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          const offsetTop = target.offsetTop - 80; // Compenser la navbar fixe
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
           });
         }
       });
@@ -181,9 +175,10 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.section-alt').forEach(el => {
+    document.querySelectorAll('.about-container, .section-title').forEach(el => {
       observer.observe(el);
     });
   </script>
 </body>
 </html>
+
