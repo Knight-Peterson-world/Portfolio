@@ -1839,6 +1839,42 @@ select.form-input {
   font-weight: 500;
 }
 
+/* Message d'erreur */
+.form-error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border-radius: var(--border-radius-md);
+  margin-top: var(--spacing-md);
+  box-shadow: var(--shadow-md);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-error svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.form-error span {
+  flex: 1;
+  font-weight: 500;
+}
+
 /* Responsive pour Contact */
 @media (max-width: 968px) {
   .contact-wrapper {

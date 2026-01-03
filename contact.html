@@ -16,6 +16,15 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    // Initialiser EmailJS au chargement de la page
+    (function(){
+      emailjs.init('YOUR_PUBLIC_KEY'); // À remplacer par votre clé publique EmailJS
+    })();
+  </script>
 </head>
 <body>
   <!-- Navigation fixe -->
@@ -70,7 +79,7 @@
                 </div>
                 <div class="method-content">
                   <h3 class="method-title">Email</h3>
-                  <a href="mailto:knight.peterson@example.com" class="method-link">knight.peterson@example.com</a>
+                  <a href="mailto:knightpetersonjeanbaptiste682@gmail.com" class="method-link">knightpetersonjeanbaptiste682@gmail.com</a>
                 </div>
               </div>
 
@@ -396,29 +405,65 @@
         }
 
         if (isFormValid) {
-          // Simuler l'envoi (remplacer par votre logique d'envoi)
           const submitButton = contactForm.querySelector('.btn-submit');
           const originalText = submitButton.innerHTML;
           
           submitButton.disabled = true;
           submitButton.innerHTML = '<span>Envoi en cours...</span>';
 
-          // Simulation d'envoi (à remplacer par un appel API réel)
-          setTimeout(() => {
-            formSuccess.classList.add('show');
-            contactForm.reset();
-            charCount.textContent = '0';
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalText;
+          // Récupérer les données du formulaire
+          const formDataObj = new FormData(contactForm);
+          
+          // Préparer les paramètres du message
+          const templateParams = {
+            from_name: formDataObj.get('name'),
+            from_email: formDataObj.get('email'),
+            subject: formDataObj.get('subject'),
+            message: formDataObj.get('message'),
+            to_email: 'knightpetersonjeanbaptiste682@gmail.com' // Votre adresse email de réception
+          };
 
-            // Scroll vers le message de succès
-            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          // Envoyer l'email via EmailJS
+          // Remplacez 'YOUR_SERVICE_ID' et 'YOUR_TEMPLATE_ID' par vos identifiants EmailJS
+          emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+            .then(function(response) {
+              // Succès
+              formSuccess.classList.add('show');
+              contactForm.reset();
+              charCount.textContent = '0';
+              submitButton.disabled = false;
+              submitButton.innerHTML = originalText;
 
-            // Masquer le message après 5 secondes
-            setTimeout(() => {
-              formSuccess.classList.remove('show');
-            }, 5000);
-          }, 1500);
+              // Scroll vers le message de succès
+              formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+              // Masquer le message après 5 secondes
+              setTimeout(() => {
+                formSuccess.classList.remove('show');
+              }, 5000);
+            }, function(error) {
+              // Erreur
+              console.error('Erreur lors de l\'envoi:', error);
+              submitButton.disabled = false;
+              submitButton.innerHTML = originalText;
+              
+              // Afficher un message d'erreur
+              const errorMessage = document.createElement('div');
+              errorMessage.className = 'form-error';
+              errorMessage.innerHTML = `
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <span>Erreur lors de l'envoi. Veuillez réessayer ou me contacter directement par email.</span>
+              `;
+              contactForm.appendChild(errorMessage);
+              
+              setTimeout(() => {
+                errorMessage.remove();
+              }, 5000);
+            });
         } else {
           // Focus sur le premier champ en erreur
           const firstError = contactForm.querySelector('.error');
@@ -450,3 +495,4 @@
   </script>
 </body>
 </html>
+
