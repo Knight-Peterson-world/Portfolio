@@ -46,10 +46,67 @@
     <div class="page-hero-overlay"></div>
   </header>
 
+  <!-- Modal de connexion admin -->
+  <div id="adminModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeAdminModal()">&times;</button>
+      <h2 class="modal-title">Accès administrateur</h2>
+      <p class="modal-description">Entrez le mot de passe pour gérer les projets.</p>
+      <form id="adminLoginForm" class="admin-form">
+        <div class="form-group">
+          <label for="admin-password" class="form-label">Mot de passe</label>
+          <input 
+            type="password" 
+            id="admin-password" 
+            class="form-input"
+            placeholder="Entrez votre mot de passe"
+            required
+          />
+        </div>
+        <p id="passwordError" class="error-message" style="display: none;">Mot de passe incorrect</p>
+        <button type="submit" class="btn btn-primary btn-full">Se connecter</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de confirmation de suppression -->
+  <div id="deleteModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
+      <h2 class="modal-title">Confirmer la suppression</h2>
+      <p class="modal-description">Êtes-vous sûr de vouloir supprimer ce projet ? Cette action est irréversible.</p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeDeleteModal()">Annuler</button>
+        <button class="btn btn-danger" onclick="confirmDeleteProject()">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Contenu principal -->
   <main>
-    <!-- Section Ajouter un projet -->
-    <section class="add-project-section">
+    <!-- Bouton admin pour accéder à la gestion -->
+    <section class="admin-access-section">
+      <div class="container">
+        <button id="adminAccessBtn" class="btn btn-outline admin-btn" onclick="showAdminModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Accès Admin</span>
+        </button>
+        <button id="adminLogoutBtn" class="btn btn-outline admin-btn" style="display: none;" onclick="logoutAdmin()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          <span>Déconnexion</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Section Ajouter un projet (caché par défaut) -->
+    <section class="add-project-section" id="addProjectSection" style="display: none;">
       <div class="container">
         <div class="add-project-card">
           <h2 class="section-title">Ajouter un nouveau projet</h2>
@@ -253,6 +310,14 @@
                       <path d="M17.5 12.5V15.8333C17.5 16.2754 17.3244 16.6993 17.0118 17.0118C16.6993 17.3244 16.2754 17.5 15.8333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V12.5M14.1667 8.33333L10 12.5M10 12.5L5.83333 8.33333M10 12.5V2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   </a>
+                  <button class="project-link delete-btn" title="Supprimer le projet" data-static="true" data-id="static-1" onclick="deleteProject('static-1', true)" style="display: none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                      <line x1="10" y1="11" x2="10" y2="17"/>
+                      <line x1="14" y1="11" x2="14" y2="17"/>
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
@@ -288,6 +353,14 @@
                       <path d="M10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5ZM9.16667 14.1667L5.83333 10.8333L7.15417 9.5125L9.16667 11.525L12.8458 7.84583L14.1667 9.16667L9.16667 14.1667Z" fill="currentColor"/>
                     </svg>
                   </a>
+                  <button class="project-link delete-btn" title="Supprimer le projet" data-static="true" data-id="static-2" onclick="deleteProject('static-2', true)" style="display: none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                      <line x1="10" y1="11" x2="10" y2="17"/>
+                      <line x1="14" y1="11" x2="14" y2="17"/>
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
@@ -324,6 +397,17 @@
 
   <!-- Script pour la navigation mobile et gestion des projets -->
   <script>
+    // ============================================
+    // CONFIGURATION ADMIN - CHANGEZ VOTRE MOT DE PASSE ICI
+    // ============================================
+    const ADMIN_PASSWORD = 'kpjb2025'; // Changez ce mot de passe!
+    
+    // État admin
+    let isAdminLoggedIn = false;
+    let projectToDelete = null;
+    let isStaticProject = false;
+    let deletedStaticProjects = JSON.parse(localStorage.getItem('deletedStaticProjects') || '[]');
+
     // Navigation mobile toggle
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -345,6 +429,148 @@
         navToggle.setAttribute('aria-expanded', 'false');
       });
     });
+
+    // ============================================
+    // GESTION ADMIN
+    // ============================================
+    function showAdminModal() {
+      document.getElementById('adminModal').classList.add('active');
+      document.getElementById('admin-password').focus();
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.remove('active');
+      document.getElementById('admin-password').value = '';
+      document.getElementById('passwordError').style.display = 'none';
+    }
+
+    function loginAdmin() {
+      const password = document.getElementById('admin-password').value;
+      if (password === ADMIN_PASSWORD) {
+        isAdminLoggedIn = true;
+        closeAdminModal();
+        updateAdminUI();
+        return true;
+      } else {
+        document.getElementById('passwordError').style.display = 'block';
+        return false;
+      }
+    }
+
+    function logoutAdmin() {
+      isAdminLoggedIn = false;
+      updateAdminUI();
+    }
+
+    function updateAdminUI() {
+      const addProjectSection = document.getElementById('addProjectSection');
+      const adminAccessBtn = document.getElementById('adminAccessBtn');
+      const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+      const deleteButtons = document.querySelectorAll('.delete-btn');
+
+      if (isAdminLoggedIn) {
+        addProjectSection.style.display = 'block';
+        adminAccessBtn.style.display = 'none';
+        adminLogoutBtn.style.display = 'flex';
+        deleteButtons.forEach(btn => btn.style.display = 'flex');
+      } else {
+        addProjectSection.style.display = 'none';
+        adminAccessBtn.style.display = 'flex';
+        adminLogoutBtn.style.display = 'none';
+        deleteButtons.forEach(btn => btn.style.display = 'none');
+      }
+    }
+
+    // Formulaire de connexion admin
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    if (adminLoginForm) {
+      adminLoginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        loginAdmin();
+      });
+    }
+
+    // Fermer le modal en cliquant en dehors
+    window.addEventListener('click', function(e) {
+      const adminModal = document.getElementById('adminModal');
+      const deleteModal = document.getElementById('deleteModal');
+      if (e.target === adminModal) {
+        closeAdminModal();
+      }
+      if (e.target === deleteModal) {
+        closeDeleteModal();
+      }
+    });
+
+    // ============================================
+    // GESTION DE LA SUPPRESSION
+    // ============================================
+    function deleteProject(projectId, isStatic = false) {
+      if (!isAdminLoggedIn) {
+        showAdminModal();
+        return;
+      }
+      projectToDelete = projectId;
+      isStaticProject = isStatic;
+      document.getElementById('deleteModal').classList.add('active');
+    }
+
+    function closeDeleteModal() {
+      document.getElementById('deleteModal').classList.remove('active');
+      projectToDelete = null;
+      isStaticProject = false;
+    }
+
+    function confirmDeleteProject() {
+      if (projectToDelete) {
+        if (isStaticProject) {
+          // Supprimer un projet statique (hardcodé)
+          deletedStaticProjects.push(projectToDelete);
+          localStorage.setItem('deletedStaticProjects', JSON.stringify(deletedStaticProjects));
+          const card = document.querySelector(`[data-id="${projectToDelete}"]`).closest('.project-card');
+          if (card) {
+            card.remove();
+          }
+        } else {
+          // Supprimer un projet dynamique
+          projects = projects.filter(p => p.id !== projectToDelete);
+          saveProjects();
+          // Supprimer la carte du DOM
+          const allCards = projectsGrid.querySelectorAll('.project-card');
+          allCards.forEach(card => {
+            const deleteBtn = card.querySelector('.delete-btn');
+            if (deleteBtn && deleteBtn.dataset.id === projectToDelete) {
+              card.remove();
+            }
+          });
+        }
+        closeDeleteModal();
+        checkNoProjects();
+      }
+    }
+
+    function checkNoProjects() {
+      const noProjects = document.getElementById('noProjects');
+      const visibleProjects = projectsGrid.querySelectorAll('.project-card');
+      if (visibleProjects.length === 0) {
+        noProjects.style.display = 'block';
+      } else {
+        noProjects.style.display = 'none';
+      }
+    }
+
+    // Cacher les projets statiques supprimés au chargement
+    function hideDeletedStaticProjects() {
+      deletedStaticProjects.forEach(id => {
+        const btn = document.querySelector(`[data-id="${id}"]`);
+        if (btn) {
+          const card = btn.closest('.project-card');
+          if (card) {
+            card.remove();
+          }
+        }
+      });
+    }
 
     // Gestion des fichiers uploadés
     const imageInput = document.getElementById('project-image');
@@ -444,6 +670,8 @@
         : '';
 
       const date = project.date ? new Date(project.date).getFullYear() : new Date().getFullYear();
+      
+      const deleteButtonDisplay = isAdminLoggedIn ? 'flex' : 'none';
 
       card.innerHTML = `
         <div class="project-image">
@@ -467,6 +695,14 @@
                   <path d="M17.5 12.5V15.8333C17.5 16.2754 17.3244 16.6993 17.0118 17.0118C16.6993 17.3244 16.2754 17.5 15.8333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V12.5M14.1667 8.33333L10 12.5M10 12.5L5.83333 8.33333M10 12.5V2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>` : ''}
+              <button class="project-link delete-btn" title="Supprimer le projet" data-id="${project.id}" onclick="deleteProject('${project.id}', false)" style="display: ${deleteButtonDisplay};">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  <line x1="10" y1="11" x2="10" y2="17"/>
+                  <line x1="14" y1="11" x2="14" y2="17"/>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -548,8 +784,10 @@
     });
 
     // Initialisation
+    hideDeletedStaticProjects();
     loadProjects();
     renderProjects();
+    updateAdminUI();
 
     // Animation au scroll
     const observerOptions = {
