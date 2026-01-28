@@ -273,7 +273,7 @@
 
         <div class="projects-grid" id="projectsGrid">
           <!-- Les projets seront ajoutés dynamiquement ici -->
-          <div class="project-card" data-category="data-science">
+          <div class="project-card" data-category="data-science" data-static="true">
             <div class="project-image">
               <div class="project-image-placeholder">
                 <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -323,7 +323,7 @@
             </div>
           </div>
 
-          <div class="project-card" data-category="statistics">
+          <div class="project-card" data-category="statistics" data-static="true">
             <div class="project-image">
               <div class="project-image-placeholder">
                 <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -623,9 +623,13 @@
         ? projects 
         : projects.filter(p => p.category === filter);
 
-      // Afficher les projets existants (hardcodés) + les nouveaux
-      const existingProjects = Array.from(projectsGrid.querySelectorAll('.project-card'));
-      existingProjects.forEach(card => {
+      // D'abord, supprimer les projets dynamiques existants (ceux sans data-static)
+      const dynamicCards = projectsGrid.querySelectorAll('.project-card:not([data-static])');
+      dynamicCards.forEach(card => card.remove());
+
+      // Afficher/masquer les projets statiques (hardcodés) selon le filtre
+      const staticProjects = projectsGrid.querySelectorAll('.project-card[data-static]');
+      staticProjects.forEach(card => {
         if (filter === 'all' || card.dataset.category === filter) {
           card.style.display = 'block';
         } else {
@@ -633,7 +637,7 @@
         }
       });
 
-      // Ajouter les nouveaux projets
+      // Ajouter les nouveaux projets dynamiques
       filteredProjects.forEach(project => {
         const projectCard = createProjectCard(project);
         projectsGrid.appendChild(projectCard);
