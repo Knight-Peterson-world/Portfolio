@@ -629,24 +629,28 @@
 
       // Afficher/masquer les projets statiques (hardcodés) selon le filtre
       const staticProjects = projectsGrid.querySelectorAll('.project-card[data-static]');
+      let visibleCount = 0;
+      
       staticProjects.forEach(card => {
         if (filter === 'all' || card.dataset.category === filter) {
-          card.style.display = 'block';
+          card.style.display = '';
+          card.style.removeProperty('display');
+          visibleCount++;
         } else {
           card.style.display = 'none';
         }
       });
 
-      // Ajouter les nouveaux projets dynamiques
+      // Ajouter les nouveaux projets dynamiques filtrés
       filteredProjects.forEach(project => {
         const projectCard = createProjectCard(project);
         projectsGrid.appendChild(projectCard);
+        visibleCount++;
       });
 
       // Afficher/masquer le message "aucun projet"
       const noProjects = document.getElementById('noProjects');
-      const visibleProjects = projectsGrid.querySelectorAll('.project-card[style*="block"], .project-card:not([style*="none"])');
-      if (visibleProjects.length === 0) {
+      if (visibleCount === 0) {
         noProjects.style.display = 'block';
       } else {
         noProjects.style.display = 'none';
