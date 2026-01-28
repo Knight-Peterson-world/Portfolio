@@ -261,14 +261,6 @@
       <div class="container">
         <div class="projects-header">
           <h2 class="section-title">Mes projets</h2>
-          <div class="projects-filters">
-            <button class="filter-btn active" data-filter="all">Tous</button>
-            <button class="filter-btn" data-filter="data-science">Data Science</button>
-            <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
-            <button class="filter-btn" data-filter="statistics">Statistiques</button>
-            <button class="filter-btn" data-filter="web-development">Web</button>
-            <button class="filter-btn" data-filter="research">Recherche</button>
-          </div>
         </div>
 
         <div class="projects-grid" id="projectsGrid">
@@ -617,40 +609,28 @@
       localStorage.setItem('projects', JSON.stringify(projects));
     }
 
-    // Rendre les projets
-    function renderProjects(filter = 'all') {
-      const filteredProjects = filter === 'all' 
-        ? projects 
-        : projects.filter(p => p.category === filter);
-
+    // Rendre les projets (affiche tous les projets)
+    function renderProjects() {
       // D'abord, supprimer les projets dynamiques existants (ceux sans data-static)
       const dynamicCards = projectsGrid.querySelectorAll('.project-card:not([data-static])');
       dynamicCards.forEach(card => card.remove());
 
-      // Afficher/masquer les projets statiques (hardcodés) selon le filtre
+      // S'assurer que les projets statiques sont visibles
       const staticProjects = projectsGrid.querySelectorAll('.project-card[data-static]');
-      let visibleCount = 0;
-      
       staticProjects.forEach(card => {
-        if (filter === 'all' || card.dataset.category === filter) {
-          card.style.display = '';
-          card.style.removeProperty('display');
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.removeProperty('display');
       });
 
-      // Ajouter les nouveaux projets dynamiques filtrés
-      filteredProjects.forEach(project => {
+      // Ajouter tous les projets dynamiques
+      projects.forEach(project => {
         const projectCard = createProjectCard(project);
         projectsGrid.appendChild(projectCard);
-        visibleCount++;
       });
 
       // Afficher/masquer le message "aucun projet"
       const noProjects = document.getElementById('noProjects');
-      if (visibleCount === 0) {
+      const totalProjects = staticProjects.length + projects.length;
+      if (totalProjects === 0) {
         noProjects.style.display = 'block';
       } else {
         noProjects.style.display = 'none';
@@ -779,17 +759,6 @@
         }
       }, 100);
     }
-
-    // Filtres
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', function() {
-        filterButtons.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        const filter = this.dataset.filter;
-        renderProjects(filter);
-      });
-    });
 
     // Initialisation
     hideDeletedStaticProjects();
