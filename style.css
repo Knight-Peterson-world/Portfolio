@@ -3326,7 +3326,7 @@ select.form-input {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   background: #24292e;
   color: white;
   border-radius: var(--border-radius-sm);
@@ -3334,15 +3334,29 @@ select.form-input {
   font-weight: 500;
   text-decoration: none;
   transition: all var(--transition-base);
+  min-height: 44px; /* Taille minimum recommandée pour les cibles tactiles */
+  cursor: pointer;
 }
 
-.github-btn:hover {
+.github-btn:hover,
+.github-btn:active {
   background: #000;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+  color: white;
 }
 
 .github-btn svg {
   flex-shrink: 0;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .github-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
 }
 
