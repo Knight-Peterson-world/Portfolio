@@ -2030,8 +2030,8 @@ select.form-input {
   position: relative;
   margin-bottom: var(--spacing-xl);
   padding-left: var(--spacing-xl);
-  opacity: 0;
-  transform: translateX(-30px);
+  opacity: 1;
+  transform: translateX(0);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
@@ -2111,8 +2111,8 @@ select.form-input {
   box-shadow: var(--shadow-md);
   overflow: hidden;
   transition: all var(--transition-base);
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .cv-card.fade-in {
@@ -2395,8 +2395,8 @@ select.form-input {
   padding: var(--spacing-xl);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-xl);
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.6s ease, transform 0.6s ease;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }

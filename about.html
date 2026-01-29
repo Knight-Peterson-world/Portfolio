@@ -367,8 +367,13 @@
     }, observerOptions);
 
     // Observer les éléments à animer
-    document.querySelectorAll('.journey-summary-card, .skill-overview-item, .interest-card, .about-intro-content').forEach(el => {
+    document.querySelectorAll('.journey-summary-card, .skill-overview-item, .interest-card, .about-intro-content, .cv-timeline-item, .cv-card, .cv-download-card').forEach(el => {
       observer.observe(el);
+    });
+
+    // Afficher immédiatement les éléments CV pour garantir la visibilité
+    document.querySelectorAll('.cv-timeline-item, .cv-card').forEach(el => {
+      el.classList.add('fade-in');
     });
   </script>
 </body>
