@@ -6,19 +6,12 @@
   <meta name="description" content="Projets de Knight Peterson Jean-Baptiste - Portfolio de projets en data science et statistiques" />
   <meta name="author" content="Knight Peterson Jean-Baptiste" />
   <title>Projets - Knight Peterson Jean-Baptiste</title>
-  
-  <!-- Preconnect pour améliorer les performances -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  
-  <!-- Fonts optimisées -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Navigation fixe -->
   <nav class="navbar" role="navigation" aria-label="Navigation principale">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">KPJB</a>
@@ -36,7 +29,6 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <header class="page-hero">
     <div class="page-hero-content">
       <h1 class="page-title">Mes Projets</h1>
@@ -81,9 +73,7 @@
     </div>
   </div>
 
-  <!-- Contenu principal -->
   <main>
-    <!-- Bouton admin pour accéder à la gestion -->
     <section class="admin-access-section">
       <div class="container">
         <button id="adminAccessBtn" class="btn btn-outline admin-btn" onclick="showAdminModal()">
@@ -120,7 +110,7 @@
                   type="text" 
                   id="project-title" 
                   name="title" 
-                  class="form-input"
+                  class="form-input form-input-text"
                   placeholder="Ex: Analyse de survie multi-omique"
                   required
                 />
@@ -131,7 +121,7 @@
                   <span>Catégorie</span>
                   <span class="required">*</span>
                 </label>
-                <select id="project-category" name="category" class="form-input" required>
+                <select id="project-category" name="category" class="form-input form-select" required>
                   <option value="">Sélectionner une catégorie</option>
                   <option value="data-science">Data Science</option>
                   <option value="machine-learning">Machine Learning</option>
@@ -167,7 +157,7 @@
                   type="text" 
                   id="project-technologies" 
                   name="technologies" 
-                  class="form-input"
+                  class="form-input form-input-text"
                   placeholder="Ex: Python, R, Scikit-learn, Pandas"
                 />
               </div>
@@ -180,7 +170,7 @@
                   type="date" 
                   id="project-date" 
                   name="date" 
-                  class="form-input"
+                  class="form-input form-input-text"
                 />
               </div>
             </div>
@@ -193,7 +183,7 @@
                 type="url" 
                 id="project-link" 
                 name="link" 
-                class="form-input"
+                class="form-input form-input-text"
                 placeholder="https://github.com/username/project"
               />
             </div>
@@ -242,7 +232,7 @@
             </div>
 
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary btn-submit-project">
                 <span>Ajouter le projet</span>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                   <path d="M10 2.5V17.5M2.5 10H17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -255,7 +245,6 @@
       </div>
     </section>
 
-    <!-- Section Liste des projets -->
     <section class="projects-section">
       <div class="container">
         <div class="projects-header">
@@ -263,8 +252,7 @@
         </div>
 
         <div class="projects-grid" id="projectsGrid">
-          <!-- Les projets seront ajoutés dynamiquement ici -->
-          <div class="project-card" data-category="data-science" data-static="true">
+          <div class="project-card" data-category="data-science" data-static="true" data-id="static-1">
             <div class="project-image">
               <img src="images/generated-image.png" alt="Multi-omic Survival Analysis" class="project-image-img" loading="lazy">
             </div>
@@ -356,7 +344,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-content">
@@ -371,20 +358,15 @@
     </div>
   </footer>
 
-  <!-- Script pour la navigation mobile et gestion des projets -->
   <script>
-    // ============================================
-    // CONFIGURATION ADMIN - CHANGEZ VOTRE MOT DE PASSE ICI
-    // ============================================
-    const ADMIN_PASSWORD = 'kpjb2025'; // Changez ce mot de passe!
+    const ADMIN_PASSWORD = 'kpjb2025';
     
-    // État admin
     let isAdminLoggedIn = false;
     let projectToDelete = null;
     let isStaticProject = false;
     let deletedStaticProjects = JSON.parse(localStorage.getItem('deletedStaticProjects') || '[]');
 
-    // Navigation mobile toggle
+    // Navigation mobile
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -397,7 +379,6 @@
       });
     }
 
-    // Fermer le menu au clic sur un lien
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
@@ -406,9 +387,7 @@
       });
     });
 
-    // ============================================
     // GESTION ADMIN
-    // ============================================
     function showAdminModal() {
       document.getElementById('adminModal').classList.add('active');
       document.getElementById('admin-password').focus();
@@ -457,7 +436,6 @@
       }
     }
 
-    // Formulaire de connexion admin
     const adminLoginForm = document.getElementById('adminLoginForm');
     if (adminLoginForm) {
       adminLoginForm.addEventListener('submit', function(e) {
@@ -466,21 +444,14 @@
       });
     }
 
-    // Fermer le modal en cliquant en dehors
     window.addEventListener('click', function(e) {
       const adminModal = document.getElementById('adminModal');
       const deleteModal = document.getElementById('deleteModal');
-      if (e.target === adminModal) {
-        closeAdminModal();
-      }
-      if (e.target === deleteModal) {
-        closeDeleteModal();
-      }
+      if (e.target === adminModal) closeAdminModal();
+      if (e.target === deleteModal) closeDeleteModal();
     });
 
-    // ============================================
-    // GESTION DE LA SUPPRESSION
-    // ============================================
+    // GESTION SUPPRESSION
     function deleteProject(projectId, isStatic = false) {
       if (!isAdminLoggedIn) {
         showAdminModal();
@@ -500,24 +471,17 @@
     function confirmDeleteProject() {
       if (projectToDelete) {
         if (isStaticProject) {
-          // Supprimer un projet statique (hardcodé)
           deletedStaticProjects.push(projectToDelete);
           localStorage.setItem('deletedStaticProjects', JSON.stringify(deletedStaticProjects));
-          const card = document.querySelector(`[data-id="${projectToDelete}"]`).closest('.project-card');
-          if (card) {
-            card.remove();
-          }
+          const card = document.querySelector(`.project-card[data-id="${projectToDelete}"]`);
+          if (card) card.remove();
         } else {
-          // Supprimer un projet dynamique
           projects = projects.filter(p => p.id !== projectToDelete);
           saveProjects();
-          // Supprimer la carte du DOM
           const allCards = projectsGrid.querySelectorAll('.project-card');
           allCards.forEach(card => {
             const deleteBtn = card.querySelector('.delete-btn');
-            if (deleteBtn && deleteBtn.dataset.id === projectToDelete) {
-              card.remove();
-            }
+            if (deleteBtn && deleteBtn.dataset.id === projectToDelete) card.remove();
           });
         }
         closeDeleteModal();
@@ -528,27 +492,17 @@
     function checkNoProjects() {
       const noProjects = document.getElementById('noProjects');
       const visibleProjects = projectsGrid.querySelectorAll('.project-card');
-      if (visibleProjects.length === 0) {
-        noProjects.style.display = 'block';
-      } else {
-        noProjects.style.display = 'none';
-      }
+      noProjects.style.display = visibleProjects.length === 0 ? 'block' : 'none';
     }
 
-    // Cacher les projets statiques supprimés au chargement
     function hideDeletedStaticProjects() {
       deletedStaticProjects.forEach(id => {
-        const btn = document.querySelector(`[data-id="${id}"]`);
-        if (btn) {
-          const card = btn.closest('.project-card');
-          if (card) {
-            card.remove();
-          }
-        }
+        const card = document.querySelector(`.project-card[data-id="${id}"]`);
+        if (card) card.remove();
       });
     }
 
-    // Gestion des fichiers uploadés
+    // Gestion fichiers uploadés
     const imageInput = document.getElementById('project-image');
     const filesInput = document.getElementById('project-files');
     const fileName = document.getElementById('file-name');
@@ -556,72 +510,56 @@
 
     if (imageInput) {
       imageInput.addEventListener('change', function() {
-        if (this.files && this.files[0]) {
-          fileName.textContent = this.files[0].name;
-        } else {
-          fileName.textContent = 'Choisir une image';
-        }
+        fileName.textContent = this.files && this.files[0] ? this.files[0].name : 'Choisir une image';
       });
     }
 
     if (filesInput) {
       filesInput.addEventListener('change', function() {
-        if (this.files && this.files.length > 0) {
-          filesName.textContent = `${this.files.length} fichier(s) sélectionné(s)`;
-        } else {
-          filesName.textContent = 'Choisir des fichiers';
-        }
+        filesName.textContent = this.files && this.files.length > 0 
+          ? `${this.files.length} fichier(s) sélectionné(s)` 
+          : 'Choisir des fichiers';
       });
     }
 
-    // Gestion du formulaire d'ajout de projet
-    const addProjectForm = document.getElementById('addProjectForm');
+    // GESTION PROJETS
     const projectsGrid = document.getElementById('projectsGrid');
     let projects = [];
 
-    // Charger les projets depuis localStorage
     function loadProjects() {
       const savedProjects = localStorage.getItem('projects');
       if (savedProjects) {
-        projects = JSON.parse(savedProjects);
-        renderProjects();
+        try {
+          projects = JSON.parse(savedProjects);
+        } catch(e) {
+          projects = [];
+        }
+        renderDynamicProjects();
       }
     }
 
-    // Sauvegarder les projets dans localStorage
     function saveProjects() {
       localStorage.setItem('projects', JSON.stringify(projects));
     }
 
-    // Rendre les projets (affiche tous les projets)
-    function renderProjects() {
-      // D'abord, supprimer les projets dynamiques existants (ceux sans data-static)
+    function renderDynamicProjects() {
+      // Supprimer uniquement les cartes dynamiques
       const dynamicCards = projectsGrid.querySelectorAll('.project-card:not([data-static])');
       dynamicCards.forEach(card => card.remove());
 
-      // S'assurer que les projets statiques sont visibles
-      const staticProjects = projectsGrid.querySelectorAll('.project-card[data-static]');
-      staticProjects.forEach(card => {
-        card.style.removeProperty('display');
-      });
-
-      // Ajouter tous les projets dynamiques
+      // Ajouter les projets dynamiques
       projects.forEach(project => {
         const projectCard = createProjectCard(project);
         projectsGrid.appendChild(projectCard);
+        // Animer après insertion
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => projectCard.classList.add('fade-in'));
+        });
       });
 
-      // Afficher/masquer le message "aucun projet"
-      const noProjects = document.getElementById('noProjects');
-      const totalProjects = staticProjects.length + projects.length;
-      if (totalProjects === 0) {
-        noProjects.style.display = 'block';
-      } else {
-        noProjects.style.display = 'none';
-      }
+      checkNoProjects();
     }
 
-    // Créer une carte de projet
     function createProjectCard(project) {
       const card = document.createElement('div');
       card.className = 'project-card';
@@ -642,13 +580,10 @@
         : '';
 
       const date = project.date ? new Date(project.date).getFullYear() : new Date().getFullYear();
-      
       const deleteButtonDisplay = isAdminLoggedIn ? 'flex' : 'none';
 
       card.innerHTML = `
-        <div class="project-image">
-          ${imageHtml}
-        </div>
+        <div class="project-image">${imageHtml}</div>
         <div class="project-content">
           <div class="project-category">${getCategoryName(project.category)}</div>
           <h3 class="project-title">${project.title}</h3>
@@ -657,7 +592,7 @@
           <div class="project-footer">
             <span class="project-date">${date}</span>
             <div class="project-links">
-              ${project.link ? `<a href="${project.link}" class="github-btn" target="_blank" title="Voir sur GitHub">
+              ${project.link ? `<a href="${project.link}" class="github-btn" target="_blank" rel="noopener noreferrer" title="Voir sur GitHub">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
@@ -675,7 +610,6 @@
           </div>
         </div>
       `;
-
       return card;
     }
 
@@ -691,32 +625,51 @@
       return categories[category] || category;
     }
 
-    // Soumission du formulaire
+    // SOUMISSION DU FORMULAIRE - CORRIGÉ
+    const addProjectForm = document.getElementById('addProjectForm');
+    
     if (addProjectForm) {
       addProjectForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        e.stopPropagation();
 
-        const formData = new FormData(this);
+        const titleInput = document.getElementById('project-title');
+        const categoryInput = document.getElementById('project-category');
+        const descriptionInput = document.getElementById('project-description');
+
+        // Validation manuelle
+        if (!titleInput.value.trim()) {
+          titleInput.focus();
+          return;
+        }
+        if (!categoryInput.value) {
+          categoryInput.focus();
+          return;
+        }
+        if (!descriptionInput.value.trim()) {
+          descriptionInput.focus();
+          return;
+        }
+
         const project = {
           id: Date.now().toString(),
-          title: formData.get('title'),
-          category: formData.get('category'),
-          description: formData.get('description'),
-          technologies: formData.get('technologies'),
-          date: formData.get('date'),
-          link: formData.get('link'),
-          image: formData.get('image'),
-          files: formData.get('files')
+          title: titleInput.value.trim(),
+          category: categoryInput.value,
+          description: descriptionInput.value.trim(),
+          technologies: document.getElementById('project-technologies').value,
+          date: document.getElementById('project-date').value,
+          link: document.getElementById('project-link').value.trim(),
         };
 
-        // Gérer l'image
-        if (project.image && project.image.size > 0) {
+        const imageFile = document.getElementById('project-image').files[0];
+
+        if (imageFile) {
           const reader = new FileReader();
-          reader.onload = function(e) {
-            project.imageUrl = e.target.result;
+          reader.onload = function(evt) {
+            project.imageUrl = evt.target.result;
             addProject(project);
           };
-          reader.readAsDataURL(project.image);
+          reader.readAsDataURL(imageFile);
         } else {
           addProject(project);
         }
@@ -726,41 +679,35 @@
     function addProject(project) {
       projects.push(project);
       saveProjects();
-      renderProjects();
+      renderDynamicProjects();
+      
+      // Reset formulaire
       addProjectForm.reset();
-      fileName.textContent = 'Choisir une image';
-      filesName.textContent = 'Choisir des fichiers';
+      if (fileName) fileName.textContent = 'Choisir une image';
+      if (filesName) filesName.textContent = 'Choisir des fichiers';
       
       // Scroll vers le nouveau projet
       setTimeout(() => {
         const newCard = projectsGrid.lastElementChild;
-        if (newCard) {
-          newCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      }, 100);
+        if (newCard) newCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 150);
     }
 
     // Initialisation
     hideDeletedStaticProjects();
     loadProjects();
-    renderProjects();
     updateAdminUI();
 
-    // Animation au scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
+    // Animation au scroll pour les cartes statiques
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('fade-in');
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('.project-card, .add-project-card').forEach(el => {
+    document.querySelectorAll('.project-card[data-static], .add-project-card').forEach(el => {
       observer.observe(el);
     });
   </script>
